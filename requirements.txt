@@ -1,0 +1,8 @@
+streamlit 
+gtts 
+moviepy 
+requests
+pillow 
+python-dotenv 
+langchain 
+langchain-groq

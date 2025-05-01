@@ -1,8 +1,9 @@
-streamlit 
-gtts 
-moviepy 
+streamlit
+gtts
+moviepy==1.0.3
 requests
-pillow 
-python-dotenv 
-langchain 
+opencv-python-headless
+python-dotenv
+langchain
 langchain-groq
+nltk

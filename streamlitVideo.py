@@ -123,7 +123,7 @@ def create_video_cv2(video_paths, script_text, voice_path, output_path="youtube_
             line_height = 60
             text_block_height = len(wrapped_text) * line_height
             y0 = (frame.shape[0] - text_block_height) // 2
-
+            
             for i, line in enumerate(wrapped_text):
                 y = y0 + i * line_height
                 (text_width, text_height), _ = cv2.getTextSize(line, cv2.FONT_HERSHEY_SIMPLEX, 1.5, 3)

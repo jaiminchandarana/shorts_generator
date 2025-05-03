@@ -129,9 +129,8 @@ def create_video_cv2(video_paths, script_text, voice_path, output_path="youtube_
                     cv2.FONT_HERSHEY_SIMPLEX, 1.5,
                     (255, 255, 255), 3, cv2.LINE_AA
                 )
-
-            out.write(frame)
-            read_frames += 1
+                out.write(frame)
+                read_frames += 1
 
         cap.release()
 

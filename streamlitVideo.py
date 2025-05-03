@@ -119,18 +119,23 @@ def create_video_cv2(video_paths, script_text, voice_path, output_path="youtube_
 
             frame = cv2.resize(frame, (width, height))
 
-            y0 = 1600
+            wrapped_text = wrap_text(text, width=35)
+            line_height = 60
+            text_block_height = len(wrapped_text) * line_height
+            y0 = (frame.shape[0] - text_block_height) // 2
+
             for i, line in enumerate(wrapped_text):
-                y = y0 + i * 60
+                y = y0 + i * line_height
                 (text_width, text_height), _ = cv2.getTextSize(line, cv2.FONT_HERSHEY_SIMPLEX, 1.5, 3)
-                x = (frame.shape[1] - text_width) // 2  
+                x = (frame.shape[1] - text_width) // 2
                 cv2.putText(
                     frame, line, (x, y),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.5,
                     (255, 255, 255), 3, cv2.LINE_AA
                 )
-                out.write(frame)
-                read_frames += 1
+
+            out.write(frame)
+            read_frames += 1
 
         cap.release()
 

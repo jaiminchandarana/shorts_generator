@@ -13,9 +13,8 @@ warnings.filterwarnings("ignore", category=UserWarning, module='moviepy')
 import numpy as np
 import tempfile
 
-load_dotenv()
-PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+groq_key = st.secrets["GROQ_API_KEY"]
+pixel_key = st.secrets["PEXELS_API_KEY"]
 
 os.makedirs("assets/images", exist_ok=True)
 os.makedirs("assets/audio", exist_ok=True)
@@ -23,7 +22,7 @@ os.makedirs("assets/audio", exist_ok=True)
 def generate_script(topic):
     model = ChatGroq(
         temperature=0.7,
-        groq_api_key=GROQ_API_KEY,
+        groq_api_key=groq_key,
         model_name="llama3-70b-8192"
     )
 
@@ -42,7 +41,7 @@ def generate_script(topic):
     return '\n'.join(lines[1:]) if len(lines) > 1 else response.content.strip()
 
 def fetch_videos(query, num_videos=5):
-    headers = {"Authorization": PEXELS_API_KEY}
+    headers = {"Authorization": pixel_key}
     url = f"https://api.pexels.com/videos/search?query={query}&per_page={num_videos}"
     res = requests.get(url, headers=headers)
 

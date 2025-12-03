@@ -23,7 +23,7 @@ def generate_script(topic):
     model = ChatGroq(
         temperature=0.7,
         groq_api_key=groq_key,
-        model_name="llama3-70b-8192"
+        model_name="llama-3.3-70b-versatile"
     )
 
     prompt = PromptTemplate.from_template("""
@@ -172,3 +172,4 @@ if st.button("Generate YouTube Short"):
             st.error(f"something went wrong: {e}")
     else:
         st.warning("Please enter a topic first.")
+
